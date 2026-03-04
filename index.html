@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+        /* 기본 초기화 및 전체 화면 설정 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #030305; /* 극도로 어두운 심연의 색 */
+            overflow: hidden; /* 스크롤 방지 */
+            font-family: 'Baskerville', 'Didot', 'Palatino Linotype', serif; /* 우아하고 신비로운 세리프 폰트 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* * 1. 몽환적인 배경 애니메이션 (Dreamy Background Animation)
+         * CSS의 방사형 그라데이션(Radial Gradient)과 블러 필터(Blur Filter)를 결합하여
+         * 빛무리가 유기적으로 움직이는 성운(Nebula) 효과를 구현합니다.
+         */
+        .orb-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            filter: blur(80px); /* 형체를 무너뜨려 몽환적인 느낌 극대화 */
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            mix-blend-mode: screen; /* 빛이 겹칠 때 밝아지는 효과 */
+            animation: float 20s infinite ease-in-out alternate;
+        }
+
+        .orb:nth-child(1) {
+            width: 60vw;
+            height: 60vw;
+            background: radial-gradient(circle, rgba(76, 29, 149, 0.5) 0%, rgba(0,0,0,0) 70%); /* 깊은 보라색 */
+            top: -10%;
+            left: -10%;
+            animation-duration: 25s;
+        }
+
+        .orb:nth-child(2) {
+            width: 50vw;
+            height: 50vw;
+            background: radial-gradient(circle, rgba(13, 148, 136, 0.4) 0%, rgba(0,0,0,0) 70%); /* 청록색 */
+            bottom: -20%;
+            right: -10%;
+            animation-delay: -5s;
+            animation-direction: alternate-reverse;
+        }
+
+        .orb:nth-child(3) {
+            width: 40vw;
+            height: 40vw;
+            background: radial-gradient(circle, rgba(30, 58, 138, 0.6) 0%, rgba(0,0,0,0) 70%); /* 짙은 파란색 */
+            top: 30%;
+            left: 40%;
+            animation-duration: 30s;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(5vw, 10vh) scale(1.1); }
+            66% { transform: translate(-10vw, 5vh) scale(0.9); }
+            100% { transform: translate(0, 0) scale(1); }
+        }
+
+        /* * 2. 먼지/별빛 입자 효과 (Dust/Star Particles)
+         * 순수 CSS Box-shadow를 이용한 꼼수(Hack)로 다수의 점들을 생성하고 이동시킵니다.
+         */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 2;
+            background: transparent;
+        }
+
+        .particles::after {
+            content: "";
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: transparent;
+            /* Box-shadow를 무작위 좌표에 배치하여 별빛 생성 */
+            box-shadow: 
+                10vw 20vh #fff, 30vw 50vh #fff, 80vw 10vh #fff, 
+                50vw 80vh #fff, 90vw 90vh #fff, 20vw 70vh #fff, 
+                70vw 40vh #fff, 40vw 20vh #fff, 60vw 60vh #fff;
+            opacity: 0.3;
+            animation: drift 50s linear infinite;
+        }
+
+        @keyframes drift {
+            from { transform: translateY(0) rotate(0deg); }
+            to { transform: translateY(-100vh) rotate(360deg); }
+        }
+
+        /* * 3. 보일 듯 말 듯한 중앙 텍스트 (Subtle Center Text)
+         */
+        .text-container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            pointer-events: none; /* 텍스트가 마우스 이벤트를 방해하지 않도록 설정 */
+        }
+
+        .coming-soon-text {
+            color: rgba(255, 255, 255, 0.1); /* 기본 투명도를 매우 낮게 설정 */
+            font-size: 2rem;
+            letter-spacing: 0.8em;
+            text-transform: uppercase;
+            margin-right: -0.8em; /* 마지막 글자의 자간 보정 */
+            
+            /* 호흡하는 듯한(Breathing) 애니메이션 */
+            animation: breathe 6s ease-in-out infinite alternate;
+        }
+
+        /* 미세한 텍스트 섀도우를 통해 신비로운 발광 효과 연출 */
+        @keyframes breathe {
+            0% { 
+                opacity: 0.05; 
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.0); 
+                transform: scale(0.98);
+            }
+            100% { 
+                opacity: 0.4; 
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.3); 
+                transform: scale(1.02);
+            }
+        }
+        
+        /* 모바일 환경 대응 */
+        @media (min-width: 768px) {
+            .coming-soon-text { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 몽환적인 빛무리 레이어 -->
+    <div class="orb-container">
+        <div class="orb"></div>
+        <div class="orb"></div>
+        <div class="orb"></div>
+    </div>
+
+    <!-- 미세한 먼지 입자 레이어 -->
+    <div class="particles"></div>
+
+    <!-- 중앙 텍스트 레이어 -->
+    <div class="text-container">
+        <h1 class="coming-soon-text">Awaiting</h1>
+    </div>
+
+</body>
+</html>
